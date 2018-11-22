@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-nov-2018 17:23:15 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="primero.Estadisticas" table="estadisticas" catalog="baloncesto">
+        <composite-id name="id" class="primero.EstadisticasId">
+            <key-property name="temporada" type="string">
+                <column name="temporada" length="5" />
+            </key-property>
+            <key-property name="jugador" type="int">
+                <column name="jugador" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="jugadores" class="primero.Jugadores" update="false" insert="false" fetch="select">
+            <column name="jugador" not-null="true" />
+        </many-to-one>
+        <property name="puntosPorPartido" type="java.lang.Float">
+            <column name="Puntos_por_partido" precision="12" scale="0" />
+        </property>
+        <property name="asistenciasPorPartido" type="java.lang.Float">
+            <column name="Asistencias_por_partido" precision="12" scale="0" />
+        </property>
+        <property name="taponesPorPartido" type="java.lang.Float">
+            <column name="Tapones_por_partido" precision="12" scale="0" />
+        </property>
+        <property name="rebotesPorPartido" type="java.lang.Float">
+            <column name="Rebotes_por_partido" precision="12" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

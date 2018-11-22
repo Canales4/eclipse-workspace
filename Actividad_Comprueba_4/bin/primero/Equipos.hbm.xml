@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-nov-2018 17:23:15 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="primero.Equipos" table="equipos" catalog="baloncesto">
+        <id name="nombre" type="string">
+            <column name="Nombre" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="ciudad" type="string">
+            <column name="Ciudad" length="20" />
+        </property>
+        <property name="conferencia" type="string">
+            <column name="Conferencia" length="4" />
+        </property>
+        <property name="division" type="string">
+            <column name="Division" length="9" />
+        </property>
+        <set name="jugadoreses" table="jugadores" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Nombre_equipo" length="20" />
+            </key>
+            <one-to-many class="primero.Jugadores" />
+        </set>
+        <set name="partidosesForEquipoVisitante" table="partidos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="equipo_visitante" length="20" />
+            </key>
+            <one-to-many class="primero.Partidos" />
+        </set>
+        <set name="partidosesForEquipoLocal" table="partidos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="equipo_local" length="20" />
+            </key>
+            <one-to-many class="primero.Partidos" />
+        </set>
+    </class>
+</hibernate-mapping>
